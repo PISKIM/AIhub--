@@ -24,12 +24,13 @@ local Window = WindUI:CreateWindow({
     Background = "rbxassetid://123456",
 })
 
--- 创建5个标签页（变量名改为以字母开头）
+-- 创建5个标签页
 local homeTab = Window:Tab({ Title = "主页", Icon = "home" })
 local generalTab = Window:Tab({ Title = "通用", Icon = "sword" })
 local otherTab = Window:Tab({ Title = "其他脚本", Icon = "box" }) 
 local aiTab = Window:Tab({ Title = "AI制作脚本", Icon = "bot" })
 
+-- ===== AI制作脚本 标签页内容 =====
 aiTab:Paragraph({
     Title = "🧠 AI 指令执行器",
     Description = "用自然语言告诉 AI 你想做什么"
@@ -41,25 +42,16 @@ aiTab:Input({
     Placeholder = "告诉 AI 你想执行的操作...",
     Callback = function(Command)
         if Command and Command ~= "" then
-            -- 这里写你的 AI 指令解析逻辑
-            -- 简单示例：根据关键词执行不同操作
             local lowerCmd = string.lower(Command)
             
             if string.find(lowerCmd, "攻击") or string.find(lowerCmd, "打") then
                 print("🤖 AI 执行：攻击模式启动")
-                -- 调用你的战斗函数
-                -- StartCombat()
             elseif string.find(lowerCmd, "移动") or string.find(lowerCmd, "走") then
                 print("🤖 AI 执行：移动指令")
-                -- 调用你的移动函数
-                -- MoveToTarget()
             elseif string.find(lowerCmd, "技能") then
                 print("🤖 AI 执行：释放技能")
-                -- 调用技能函数
-                -- UseSkill()
             else
                 print("🤖 AI 无法识别指令：" .. Command)
-                -- 提示用户
             end
         end
     end
@@ -71,44 +63,37 @@ aiTab:Toggle({
     Callback = function(Value)
         if Value then
             print("AI 自动模式已开启")
-            -- 启动 AI 决策循环
-            -- StartAILoop()
         else
             print("AI 自动模式已关闭")
-            -- 停止 AI 决策循环
-            -- StopAILoop()
         end
     end
 })
-local ai2Tab = Window:Tab({ Title = "AI对话", Icon = "bot" })
 
+-- ===== AI对话 标签页内容（已修正） =====
+local ai2Tab = Window:Tab({ Title = "AI对话", Icon = "message-circle" })  -- 改成聊天气泡图标更好看
 
--- 在 AI 标签页创建一个对话区域
-aiTab:Paragraph({
+-- 下面全部改成 ai2Tab:
+ai2Tab:Paragraph({
     Title = "🤖 AI 智能助手",
     Description = "输入你的问题，AI 会为你解答"
 })
 
--- 显示对话内容的文本框（只读）
-local chatBox = aiTab:Paragraph({
+local chatBox = ai2Tab:Paragraph({
     Title = "对话记录",
     Description = "等待你的提问..."
 })
 
--- 输入框：输入你的问题
-aiTab:Input({
+ai2Tab:Input({
     Title = "提问",
     Description = "输入你想问 AI 的问题",
     Placeholder = "例如：如何快速升级？",
     Callback = function(Question)
         if Question and Question ~= "" then
-            -- 更新界面显示"思考中..."
             chatBox:Set({
                 Title = "🤔 AI 思考中...",
                 Description = "正在处理你的问题，请稍候..."
             })
             
-            -- 调用免费的 AI API（使用 http 服务）
             local HttpService = game:GetService("HttpService")
             local url = "https://api.xygeng.cn/api?msg=" .. HttpService:UrlEncode(Question)
             
@@ -118,10 +103,8 @@ aiTab:Input({
                 end)
                 
                 if success and response then
-                    -- 解析返回的 JSON 数据
                     local data = HttpService:JSONDecode(response)
                     if data and data.data and data.data.content then
-                        -- 显示 AI 的回答
                         chatBox:Set({
                             Title = "💬 AI 回答",
                             Description = data.data.content
@@ -143,8 +126,7 @@ aiTab:Input({
     end
 })
 
--- 加一个清空对话的按钮
-aiTab:Button({
+ai2Tab:Button({
     Title = "🗑️ 清空对话",
     Description = "清除当前的对话记录",
     Callback = function()
@@ -154,4 +136,5 @@ aiTab:Button({
         })
     end
 })
+
 local settingsTab = Window:Tab({ Title = "设置", Icon = "settings" })
