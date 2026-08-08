@@ -37,84 +37,9 @@ local chatTab = Window:Tab({ Title = "AI对话", Icon = "message-circle" })
 local settingsTab = Window:Tab({ Title = "设置", Icon = "settings" })
 
 -- ============================================
---  1. 主页标签页
--- ============================================
-homeTab:Paragraph({
-    Title = "🏠 欢迎使用 AIhub",
-    Description = "一个集成了AI功能的Roblox脚本工具\n\n📌 使用说明：\n• 按 RightShift 显示/隐藏窗口\n• 所有功能分布在5个标签页中"
-})
-
-homeTab:Button({
-    Title = "📖 查看教程",
-    Description = "点击查看完整使用教程",
-    Callback = function()
-        print("教程功能待完善")
-    end
-})
-
--- ============================================
---  2. 战斗标签页
--- ============================================
-combatTab:Paragraph({
-    Title = "⚔️ 战斗功能",
-    Description = "自动战斗相关设置"
-})
-
-combatTab:Toggle({
-    Title = "自动攻击",
-    Description = "开启后自动攻击最近的敌人",
-    Callback = function(value)
-        print("自动攻击: " .. tostring(value))
-    end
-})
-
-combatTab:Toggle({
-    Title = "自动格挡",
-    Description = "开启后自动格挡敌人攻击",
-    Callback = function(value)
-        print("自动格挡: " .. tostring(value))
-    end
-})
-
-combatTab:Slider({
-    Title = "攻击范围",
-    Description = "调整自动攻击的检测范围",
-    Default = 30,
-    Min = 10,
-    Max = 100,
-    Step = 5,
-    Callback = function(value)
-        print("攻击范围: " .. tostring(value))
-    end
-})
-
--- ============================================
---  3. 工具标签页
--- ============================================
-utilsTab:Paragraph({
-    Title = "🛠️ 实用工具",
-    Description = "各种辅助工具"
-})
-
-utilsTab:Button({
-    Title = "🚀 传送至重生点",
-    Description = "点击立即传送回重生点",
-    Callback = function()
-        print("传送至重生点")
-    end
-})
-
-utilsTab:Button({
-    Title = "💉 满血回复",
-    Description = "立即回复全部生命值",
-    Callback = function()
-        print("满血回复")
-    end
-})
-
--- ============================================
 --  4. AI对话标签页（带独立聊天记录窗口）
 -- ============================================
+
 chatTab:Paragraph({
     Title = "🤖 AI 智能对话",
     Description = "输入问题，AI 会为你解答"
@@ -282,38 +207,6 @@ chatTab:Button({
             Title = "📝 最新回复",
             Description = "已清空，可以继续提问了"
         })
-    end
-})
-
--- ============================================
---  5. 设置标签页
--- ============================================
-settingsTab:Paragraph({
-    Title = "⚙️ 设置",
-    Description = "脚本设置"
-})
-
-settingsTab:Toggle({
-    Title = "启用提示音",
-    Description = "操作时播放提示音效",
-    Callback = function(value)
-        print("提示音: " .. tostring(value))
-    end
-})
-
-settingsTab:Toggle({
-    Title = "显示调试信息",
-    Description = "在控制台显示详细日志",
-    Callback = function(value)
-        print("调试模式: " .. tostring(value))
-    end
-})
-
-settingsTab:Button({
-    Title = "🔄 重置默认",
-    Description = "恢复所有设置为默认值",
-    Callback = function()
-        print("重置所有设置")
     end
 })
 
