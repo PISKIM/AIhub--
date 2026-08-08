@@ -80,7 +80,8 @@ aiTab:Toggle({
         end
     end
 })
-local ai2Tab = Window:Tab({ Title = "AI对话", Icon = "bot" }) 
+local ai2Tab = Window:Tab({ Title = "AI对话", Icon = "bot" })
+
 
 -- 在 AI 标签页创建一个对话区域
 aiTab:Paragraph({
