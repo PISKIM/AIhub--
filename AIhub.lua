@@ -27,6 +27,8 @@ local Window = WindUI:CreateWindow({
     Background = "rbxassetid://123456",  -- 可以设置背景图片[citation:2][citation:8]
 })
 -- 创建几个不同功能的标签页
-local MainTab = Window:Tab({ Title = "主页", Icon = "home" })
-local CombatTab = Window:Tab({ Title = "通用", Icon = "sword" })
-local SettingsTab = Window:Tab({ Title = "设置", Icon = "settings" })
+local 1Tab = Window:Tab({ Title = "主页", Icon = "home" })
+local 2Tab = Window:Tab({ Title = "通用", Icon = "sword" })
+local 3Tab = Window:Tab({ Title = "其他脚本", Icon = "home" })
+local 4Tab = Window:Tab({ Title = "AI制作脚本", Icon = "sword" })
+local 5Tab = Window:Tab({ Title = "设置", Icon = "settings" })
